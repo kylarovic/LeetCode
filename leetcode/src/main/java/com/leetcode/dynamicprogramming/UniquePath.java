@@ -11,11 +11,23 @@ package com.leetcode.dynamicprogramming;
  */
 public class UniquePath {
     public int findUniquePaths(int m, int n) {
-
-        return recurse(m, n);
+        int[][] r = new int[m][n];
+        return recurse(r, m, n);
     }
 
-    public int recurse(int m, int n) {
-        return 0;
+    private int recurse(int[][] r, int m, int n) {
+        if (m < 0 || n < 0) {
+            return 0;
+        }
+        //check if this is already computed, if so, return the value.
+        if (r[m][n] > 0) {
+            return r[m][n];
+        }
+        if ((m == 0) && (n == 0)) {
+            return 1;
+        }
+        //compute the value for m,n and store it. // same as fibonacci
+        r[m][n] = recurse(r, m - 1, n) + recurse(r, m, n - 1);
+        return r[m][n];
     }
 }
