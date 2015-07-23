@@ -64,4 +64,43 @@ public class UniquePath {
         }
         return r[low - 1];
     }
+
+    /*
+    Follow up for "Unique Paths":
+
+    Now consider if some obstacles are added to the grids. How many unique paths would there be?
+
+    An obstacle and empty space is marked as 1 and 0 respectively in the grid.
+
+    For example,
+    There is one obstacle in the middle of a 3x3 grid as illustrated below.
+    [
+      [0,0,0],
+      [0,1,0],
+      [0,0,0]
+    ]
+    The total number of unique paths is 2.
+
+    Note: m and n will be at most 100
+     */
+    public int uniquePathsWithObstacles(int[][] a) {
+        int m = a.length;
+        int n = a[0].length;
+        int[][] r = new int[2][n];
+
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
+                if(i == 0 && j == 0) {
+                    r[i%2][j] = (a[i][j] == 1) ? 0 : 1;
+                }else if(i == 0) {
+                    r[i%2][j] = (a[i][j] == 1) ? 0 : r[Math.abs(i%2)][j-1];
+                }else if(j == 0) {
+                    r[i%2][j] = (a[i][j] == 1) ? 0 : r[Math.abs((i%2-1))][j];
+                }else {
+                    r[i%2][j] = (a[i][j] == 1) ? 0 : r[Math.abs((i%2-1))][j] + r[Math.abs(i%2)][j-1];
+                }
+            }
+        }
+        return r[Math.abs(m%2 -1 )][n-1];
+    }
 }
