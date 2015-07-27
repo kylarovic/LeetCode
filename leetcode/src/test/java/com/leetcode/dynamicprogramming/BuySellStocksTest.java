@@ -11,14 +11,24 @@ public class BuySellStocksTest {
         int actual = b.maxProfitPurchaseOnce(test);
 
         Assert.assertTrue(expected == actual);
+
+        actual = b.maxProfitPurchaseOnce2(test);
+        Assert.assertTrue(expected == actual);
     }
 
-    @Test public void testKadane() throws Exception {
-        int[] test = { -2, 1, -3, 4, -1, 2, 1, -5, 4 };
-        int expected = 6;
+    @Test public void testMaxProfitPurchaseAnyNumberOfTimes() throws Exception {
+        int[] test = { 6, 1, 3, 2, 4, 7 };
+        int expected = 7;
         BuySellStocks b = new BuySellStocks();
-        int actual = b.kadane(test);
+        int actual = b.maxProfitPurchaseAnyNumberOfTimes(test);
 
         Assert.assertTrue(expected == actual);
+    }
+
+    @Test public void testMaxProfitPurchaseNtimes() throws Exception {
+        int[] test = { 6, 1, 3, 2, 4, 7 };
+        int expected = 7;
+        BuySellStocks b = new BuySellStocks();
+        int actual = b.maxProfitPurchaseNtimes(test);
     }
 }
